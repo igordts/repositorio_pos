@@ -1,0 +1,36 @@
+# Nome do workflow (aparece na aba "Actions" do GitHub)
+name: CI (Integração Contínua)
+
+# Define quando esse workflow será executado
+on:
+  # Executa o workflow quando houver um push (envio) ou pull request (solicitação de merge) para a branch "main"
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Permite executar manualmente esse workflow pela aba "Actions" no GitHub
+  workflow_dispatch:
+
+# Aqui começa a definição dos jobs (tarefas)
+jobs:
+  # Nome do job
+  build:
+    # Define o sistema operacional do runner (máquina virtual que executa as tarefas)
+    runs-on: ubuntu-latest
+
+    # Passos que serão executados dentro do job
+    steps:
+      # Primeiro passo: faz o checkout do código do repositório
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      # Segundo passo: executa um comando simples no terminal
+      - name: Executar um comando simples
+        run: echo Olá, mundo!
+
+      # Terceiro passo: executa vários comandos
+      - name: Executar vários comandos
+        run: |
+          echo Adicione outras ações aqui para compilar,
+          echo testar e fazer deploy do seu projeto.
